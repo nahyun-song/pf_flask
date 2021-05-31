@@ -1,0 +1,58 @@
+<html>
+    <head>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <title>
+        Program List
+        </title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="/">Work out with Chloe Ting!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      {% block list %}<a class="nav-link active" aria-current="page" href="/list">프로그램 리스트</a>{% endblock %}
+                    </li>
+                    <li class="nav-item">
+                      {% block schedule %}<a class="nav-link" href="/schedule">스케줄</a>{% endblock %}
+                    </li>
+                    <li class="nav-item">
+                      {% block food %}<a class="nav-link" href="/food">식단관리</a>{% endblock %}
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+    </body>
+</html>
+
+<html>
+  <body>
+    {% if programs %}
+    <section class="py-5 text-center container">
+      <table class = "table - program_list">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>PROGRAM</th>
+            <th>LINK</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for pro in programs %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ pro.split('.')[0].split('/')[1].upper() }}</td>
+            <td><a href="{{ BASE_URL + pro }}" class="url-value">CLICK</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+    </section>
+    {% endif %}
+  </body>
+</html>

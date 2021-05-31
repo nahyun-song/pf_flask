@@ -1,0 +1,44 @@
+{% extends 'main.html'%} 
+{% block list %}<a class="nav-link" href="/list">프로그램 리스트</a>{% endblock %}
+{% block schedule %}<a class="nav-link active" aria-current="page" href="/schedule">스케줄</a>{% endblock %}
+
+{% block dropdown %}
+<html>
+  <body>
+    {% if dict_list %}
+    <section class="py-5 text-center container">
+      <table class = "table - program_list">
+        <thead>
+          <tr>
+            <th>DAY</th>
+            <th>TIME</th>
+            <th>CHECK</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in range(21) %}
+          <tr>
+            <td>{{ dict_list[i]['day'] }}</td>
+            <td>{{ dict_list[i]['time'] }}</td>
+            <td>
+              <form action = '/schedule/check' method ='get'>
+                <input type='checkbox' name='done' value='done'>&nbsp;<input placeholder='운동한 날짜 : 예)200101' required name='date'>&nbsp;<button>저장</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+    </section>
+    {% endif %}
+  </body>
+</html>
+{% endblock %}
+
+{% block contents %}
+<html>
+<body>
+&nbsp;
+</body>
+</html>
+{% endblock %}
