@@ -1,4 +1,8 @@
 {% extends 'main.html'%} 
+{% block list %} {% endblock %}
+{% block schedule %} {% endblock %}
+{% block food %} {% endblock %}
+
 
 {% block contents %}
 <!DOCTYPE html>
@@ -10,16 +14,28 @@
   <title>Sign in</title>
 </head>
 <body>
-    <form action="{{ url_for('signin_done') }}" method="get">
-        <p>EMAIL: </p>
-        <input type="email" name="email" id="email">
-        <p>PASSWORD: </p>
-        <input type="password" name="pwd" id="pwd">
-        <button type="submit">회원가입</button>
+    <form action="{{ url_for('signin_done') }}" method="post">
+      <label for="basic-url" class="form-label">ID를 입력해주세요.</label>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3">ID</span>
+        <input type="text" class="form-control" name="userid" id="userid">
+      </div>
+      <label for="basic-url" class="form-label">Email을 입력해주세요.</label>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3">EMAIL</span>
+        <input type="email" class="form-control" name="email" id="email">
+      </div>
+      <label for="basic-url" class="form-label">Password를 입력해주세요.</label>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3">PASSWORD</span>
+        <input type="password" class="form-control" name="pwd" id="pwd">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">회원가입</button>
+      </div>
     </form>
     {% block user %}
     {% endblock %}
 </body>
 </html>
 {% endblock %}
-

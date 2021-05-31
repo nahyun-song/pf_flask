@@ -1,6 +1,3 @@
-#Blueprint
-
-from sys import dont_write_bytecode
 from flask import Flask, Blueprint, redirect, render_template, url_for
 import requests
 from bs4 import BeautifulSoup
@@ -44,7 +41,9 @@ def active(num):
     for i in range(len(day_list)):
         dict_list.append({'day':day_list[i][0], 'time':day_list[i][3].strip()})
 
-    return render_template('detail-sche.html', dict_list=dict_list, num=num)
+    dict_len = len(dict_list)
+
+    return render_template('detail-sche.html', dict_list=dict_list, num=num, dict_len=dict_len)
 
 @bp.route('/check', methods=['GET', 'POST'])
 def check():
