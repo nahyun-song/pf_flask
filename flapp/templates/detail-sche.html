@@ -21,7 +21,7 @@
             <td>{{ dict_list[i]['day'] }}</td>
             <td>{{ dict_list[i]['time'] }}</td>
             <td>
-              <form action = '/schedule/check' method ='get'>
+              <form action = '/schedule/check' method ='post'>
                 <input type='checkbox' name='done' value='done'>&nbsp;<input placeholder='운동한 날짜 : 예)200101' required name='date'>&nbsp;<button>저장</button>
               </form>
             </td>

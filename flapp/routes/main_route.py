@@ -1,7 +1,8 @@
-from flask import Flask, Blueprint, redirect, render_template, url_for
+from flask import Flask, Blueprint, session, request, redirect, render_template, url_for
 import requests
 from bs4 import BeautifulSoup
 from werkzeug.utils import redirect
+from flapp.models import db, Check
 
 bp = Blueprint('schedule', __name__, url_prefix='/schedule') 
 
@@ -45,16 +46,14 @@ def active(num):
 
     return render_template('detail-sche.html', dict_list=dict_list, num=num, dict_len=dict_len)
 
-@bp.route('/check', methods=['GET', 'POST'])
+@bp.route('/check', methods=['POST'])
 def check():
-    done = request.args.get('done')
-    date = request.args.get('date')
+    userid = session['user_id']
+    done = request.form['done']
+    date = request.form['date']
 
-    if done in None:
-        done == 'undone'
-
-    object = Check(done=done, date=date)
-    db.session.add(object)
+    check = Check(userid=userid, done=done, date=date)
+    db.session.add(check)
     db.session.commit()
 
     return redirect(url_for('schedule'))

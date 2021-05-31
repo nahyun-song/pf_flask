@@ -22,7 +22,7 @@ def signin():
    if session.get('logged_in'):
         resp_user = User.query.filter_by(userid=session.get('userid')).all()
         print('return user test')
-        return render_template('signin.html', notes=resp_user, isLogin=True)
+        return render_template('signin.html', userid=resp_user, isLogin=True)
 
    print('Dummy Context!')
    return render_template('signin.html')
@@ -61,13 +61,18 @@ def login_done():
             session.clear()
             session['user_id'] = resp.userid
             session['logged_in'] = True
-            print(session)
+            print(session) #SecureCookieSession
             return redirect(url_for('main'))
        else:
            error = 'Incorrect ID or Password!'
            flash(error)
 
    return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('signin'))
 
 
 @app.route('/list') 
@@ -104,10 +109,6 @@ def schedule():
         programs.append(link.get('href'))
 
     return render_template('schedule.html', programs=programs)
-
-@app.route('/food') 
-def food():
-    return render_template('food.html')
 
 
 #어플리케이션 실행하기
