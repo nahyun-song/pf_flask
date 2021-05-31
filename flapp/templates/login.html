@@ -1,0 +1,33 @@
+{% extends 'main.html'%} 
+{% block list %} {% endblock %}
+{% block schedule %} {% endblock %}
+{% block food %} {% endblock %}
+
+{% block contents %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{ url_for('login_done') }}" method="post">
+        <label for="basic-url" class="form-label">ID를 입력해주세요.</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">ID</span>
+          <input type="text" class="form-control" name="userid" id="userid" placeholder='ID' required>
+        </div>
+        <label for="basic-url" class="form-label">Password를 입력해주세요.</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">PASSWORD</span>
+          <input type="password" class="form-control" name="pwd" id="pwd" placeholder='PASSWORD' required>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">로그인</button>
+        </div>
+    </form>
+</body>
+</html>
+{% endblock %}
