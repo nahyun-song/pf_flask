@@ -16,10 +16,12 @@ class User(db.Model): #데이터 모델을 나타내는 객체 선언
         return f"User id : {self.userid}, Email : {self.email}, Password : {self.pwd}"
 
 class Check(db.Model):
-	userid = db.Column(db.String, primary_key=True)
-	done = db.Column(db.String, nullable=False)
-	date = db.Column(db.Integer, nullable=False)
+	index = db.Column(db.Integer, primary_key=True)
+	userid = db.Column(db.String)
+	#회차정보
+	date = db.Column(db.String, nullable=False)
+	comm = db.Column(db.String, nullable=False)
 	#'이게뭐지' = db.relationship('Post', backref='user', lazy=True)
 
 	def __repr__(self):
-		return f"User id : {self.userid}, Check : {self.done}, Date : {self.date}"
+		return f"Index : {self.index}, User id : {self.userid}, Check : {self.comm}, Date : {self.date}"

@@ -2,7 +2,7 @@ from flask import Flask, Blueprint, session, request, redirect, render_template,
 import requests
 from bs4 import BeautifulSoup
 from werkzeug.utils import redirect
-from flapp.models import db, Check
+from flapp.models import db, User, Check
 
 bp = Blueprint('schedule', __name__, url_prefix='/schedule') 
 
@@ -44,15 +44,21 @@ def active(num):
 
     dict_len = len(dict_list)
 
-    return render_template('detail-sche.html', dict_list=dict_list, num=num, dict_len=dict_len)
+    return render_template('modi-sche.html', dict_list=dict_list, num=num, dict_len=dict_len)
 
-@bp.route('/check', methods=['POST'])
-def check():
+@bp.route('/<num>/check', methods=['POST'])
+def check(num):
+    q_list = Check.query.filter(Check.index).all()
+    if len(q_list) == 0 :
+        index = 1
+    else :
+        index = len(q_list) + 1
+
     userid = session['user_id']
-    done = request.form['done']
+    comm = request.form['comm']
     date = request.form['date']
 
-    check = Check(userid=userid, done=done, date=date)
+    check = Check(index=index, userid=userid, comm=comm, date=date)
     db.session.add(check)
     db.session.commit()
 
