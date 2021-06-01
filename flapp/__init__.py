@@ -111,6 +111,7 @@ def schedule():
     return render_template('schedule.html', programs=programs)
 
 
+
 #어플리케이션 실행하기
 if __name__ == '__main__':
     db.create_all()

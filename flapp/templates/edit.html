@@ -1,0 +1,32 @@
+{% extends 'main.html'%} 
+{% block list %}<a class="nav-link" href="/list">프로그램 리스트</a>{% endblock %}
+{% block board %}<a class="nav-link active" aria-current="page" href="/schedule.board">운동기록</a>{% endblock %}
+
+{% block contents %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <form class="row g-3" style="float: none; margin: 0 auto;" action = '/schedule/edit/{{ index }}/done' method ='post'>
+        <div class="col-md-2">
+          <label for="inputZip" class="form-label">날짜선택</label>
+          <input type="date" class="form-control" id="inputZip" name='date' dicrequired>
+        </div>
+        <div class="col-md-2">
+            <label for="inputZip" class="form-label">코멘트</label>
+            <input type="text" class="form-control" id="inputZip" name='comm' placeholder="오늘 스케줄도 무사히 완료!" required>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+    </form>
+</body>
+</html>
+{% endblock %}
+
+

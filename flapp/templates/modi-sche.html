@@ -1,6 +1,6 @@
 {% extends 'main.html'%} 
 {% block list %}<a class="nav-link" href="/list">프로그램 리스트</a>{% endblock %}
-{% block schedule %}<a class="nav-link active" aria-current="page" href="/schedule">스케줄</a>{% endblock %}
+{% block schedule %}<a class="nav-link active" aria-current="page" href="/schedule">기록하기</a>{% endblock %}
 
 {% block contents %}
 <!DOCTYPE html>
@@ -9,16 +9,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROGRAM</title>
+    <title>{{ programs[num].split('.')[0].split('/')[1].upper() }}</title>
 </head>
 <body>
-    <form class="row g-3" action = '/schedule/<{{num}}>/check' method ='post'>
+    <div class="btn-group-lg" role="group" aria-label="..." style="float: none; margin: 0 auto;">
+        <button type="button" class="btn btn-default">{{ programs[num].split('.')[0].split('/')[1].upper() }}</button>
+    </div>
+    <form class="row g-3" style="float: none; margin: 0 auto;" action = '/schedule/{{ num }}/check' method ='post'>
         <div class="col-md-4">
           <label for="inputState" class="form-label">회차선택</label>
           <select id="inputState" class="form-select" name="day">
             <option selected>회차를 선택해주세요.</option>
             {% for i in range(dict_len) %}
-            <option value={{ dict_len }}>{{ dict_list[i]['day'] }} | {{ dict_list[i]['time'] }}</option>
+            <option value={{ loop.index }}>{{ dict_list[i]['day'] }} | {{ dict_list[i]['time'] }}</option>
             {% endfor %}
           </select>
         </div>
@@ -33,5 +36,8 @@
         <div class="col-12">
           <button type="submit" class="btn btn-primary">저장</button>
         </div>
-      </form>
+    </form>
+</body>
+</html>
 {% endblock %}
+

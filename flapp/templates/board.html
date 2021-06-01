@@ -1,0 +1,45 @@
+{% extends 'main.html'%} 
+{% block list %}<a class="nav-link" href="/list">프로그램 리스트</a>{% endblock %}
+{% block board %}<a class="nav-link active" aria-current="page" href="/schedule/board">운동기록</a>{% endblock %}
+
+
+{% block contents %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로그램</title>
+</head>
+  <body>
+    <section class="py-5 text-center container">
+      <table class = "table - program_list">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>PROGRAM</th>
+            <th>DAY</th>
+            <th>DATE</th>
+            <th>COMMENT</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in range(user_len) %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ pro[i] }}</td>
+            <td>{{ datime[i] }}</td>
+            <td>{{ date[i] }}</td>
+            <td>{{ comm[i] }}</td>
+            <td><a href="/schedule/edit/{{ index[i] }}" class="url-value">수정</a></td>
+            <td><a href="/schedule/delete/{{ index[i] }}" class="url-value">삭제</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+    </section>
+  </body>
+</html>
+{% endblock %}

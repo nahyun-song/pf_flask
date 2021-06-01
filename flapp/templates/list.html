@@ -18,7 +18,10 @@
                       {% block list %}<a class="nav-link active" aria-current="page" href="/list">프로그램 리스트</a>{% endblock %}
                     </li>
                     <li class="nav-item">
-                      {% block schedule %}<a class="nav-link" href="/schedule">스케줄</a>{% endblock %}
+                      {% block schedule %}<a class="nav-link" href="/schedule">기록하기</a>{% endblock %}
+                    </li>
+                    <li class="nav-item">
+                      {% block board %}<a class="nav-link" href="/schedule/board">운동기록</a>{% endblock %}
                     </li>
                     <li class="nav-item">
                       {% block logout %}<a class="nav-link" href="/logout">로그아웃</a>{% endblock %}

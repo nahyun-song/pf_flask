@@ -18,10 +18,11 @@ class User(db.Model): #데이터 모델을 나타내는 객체 선언
 class Check(db.Model):
 	index = db.Column(db.Integer, primary_key=True)
 	userid = db.Column(db.String)
-	#회차정보
+	pro = db.Column(db.String)
+	datime = db.Column(db.String)
 	date = db.Column(db.String, nullable=False)
 	comm = db.Column(db.String, nullable=False)
 	#'이게뭐지' = db.relationship('Post', backref='user', lazy=True)
 
 	def __repr__(self):
-		return f"Index : {self.index}, User id : {self.userid}, Check : {self.comm}, Date : {self.date}"
+		return f"index : {self.index}, userid : {self.userid}, pro : {self.pro}, datime : {self.datime}, comm : {self.comm}, date : {self.date}"
