@@ -12,7 +12,7 @@
       프로그램을 선택해주세요.
     </a>
     {% for i in range(21) %}
-    <a href="/schedule/{{ i }}" class="list-group-item list-group-item-action">{{ programs[i].split('.')[0].split('/')[1].upper() }}</a>
+    <a href="/schedule/{{ i }}" class="list-group-item list-group-item-action">{{ i+1 }}   {{ programs[i].split('.')[0].split('/')[1].upper() }}</a>
     {% endfor %}
   </div>
 </body>

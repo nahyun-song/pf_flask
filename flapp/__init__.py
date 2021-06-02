@@ -166,11 +166,11 @@ def keyword():
 
         for i in range(21):
             if len(k_type[i])==3:
-                keyword_t = Keyword(index=i, pro=pro[i], k_word1=k_type[i][0], k_word2=k_type[i][1], k_word3=k_type[i][2])
+                keyword_t = Keyword(index=i+1, pro=pro[i], k_word1=k_type[i][0], k_word2=k_type[i][1], k_word3=k_type[i][2])
                 db.session.add(keyword_t)
                 db.session.commit()
             else:
-                keyword_t = Keyword(index=i, pro=pro[i], k_word1=k_type[i][0], k_word2=k_type[i][1], k_word3=None)
+                keyword_t = Keyword(index=i+1, pro=pro[i], k_word1=k_type[i][0], k_word2=k_type[i][1], k_word3=None)
                 db.session.add(keyword_t)
                 db.session.commit()
         return redirect(url_for('main'))
