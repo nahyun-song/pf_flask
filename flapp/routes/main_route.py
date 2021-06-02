@@ -2,10 +2,9 @@ from flask import Flask, Blueprint, session, request, redirect, render_template,
 import requests
 from bs4 import BeautifulSoup
 from werkzeug.utils import redirect
-from flapp.models import db, User, Check
+from flapp.models import db, User, Check, Keyword
 
-
-bp = Blueprint('schedule', __name__, url_prefix='/schedule') 
+bp = Blueprint('main', __name__, url_prefix='/schedule') 
 
 @bp.route('/') 
 def schedule():
@@ -64,10 +63,14 @@ def detail(num):
 @bp.route('/<num>/check', methods=['POST'])
 def check(num):
     q_list = Check.query.filter(Check.index).all()
+    index_list = []
+    for i in range(len(q_list)):
+        index_list.append(int(q_list[i].index))
+
     if len(q_list) == 0 :
         index = 1
     else :
-        index = len(q_list) + 1
+        index = max(index_list) + 1
 
     userid = session['user_id']
     comm = request.form['comm']
@@ -112,7 +115,7 @@ def check(num):
     db.session.add(check)
     db.session.commit()
 
-    return redirect(url_for('schedule.board'))
+    return redirect(url_for('main.board'))
 
 @bp.route('/board', methods=['GET', 'POST'])
 def board():
@@ -167,7 +170,7 @@ def edit_done(index):
     db.session.add(check)
     db.session.commit()
 
-    return redirect(url_for('schedule.board'))
+    return redirect(url_for('main.board'))
 
 
 @bp.route('/delete/<index>', methods=['GET', 'POST'])
@@ -177,4 +180,4 @@ def delete(index):
     db.session.delete(q_list)
     db.session.commit()
 
-    return redirect(url_for('schedule.board'))
+    return redirect(url_for('main.board'))
