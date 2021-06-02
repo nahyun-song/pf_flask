@@ -1,4 +1,5 @@
 {% extends 'main.html'%} 
+{% block main %}<a class="navbar-brand" href="/main">Work out with Chloe Ting!</a>{% endblock %}
 {% block list %}<a class="nav-link" href="/list">프로그램 리스트</a>{% endblock %}
 {% block board %}<a class="nav-link active" aria-current="page" href="/schedule/board">운동기록</a>{% endblock %}
 
@@ -13,6 +14,7 @@
 </head>
   <body>
     <section class="py-5 text-center container">
+      <a href="/schedule"><button class="btn btn-primary btn pull-right" type="button" style="float:right">기록추가</button></a>
       <table class = "table - program_list">
         <thead>
           <tr>

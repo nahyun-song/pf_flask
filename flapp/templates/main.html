@@ -5,7 +5,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-            <a class="navbar-brand" href="#">Work out with Chloe Ting!</a>
+            {% block main %}<a class="navbar-brand" href="#">Work out with Chloe Ting!</a>{% endblock %}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,4 +31,43 @@
 </html>
 
 {% block contents %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
+</head>
+<body>
+  <main>
+    <div class="container py-4">
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Chloe Ting free program으로 운동하고 기록해보세요!</h1>
+          <p class="col-md-8 fs-4">아래 버튼을 누르면 프로그램을 확인할 수 있습니다.</p>
+          <a href="/list"><button class="btn btn-primary btn-lg" type="button">바로가기</button></a>
+        </div>
+      </div>
+  
+      <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-white bg-dark rounded-3">
+            <h2>최신 컨텐츠</h2>
+            <p>{{ programs[0].split('.')[0].split('/')[1].upper() }}</p>
+            <a href="{{ BASE_URL + programs[0] }}"><button class="btn btn-outline-light" type="button">보러가기</button></a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-white bg-dark rounded-3">
+            <h2>인기 컨텐츠</h2>
+            <p>{{ programs[1].split('.')[0].split('/')[1].upper() }}</p>
+            <a href="{{ BASE_URL + programs[1] }}"><button class="btn btn-outline-light" type="button">보러가기</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+    </body>
+</html>
 {% endblock %}
